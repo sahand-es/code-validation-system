@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Heebo:wght@400;500;700;900&display=swap');
+
+:root {
+    --primaryColor: #9C07B6;
+    --primaryDarkColor: #3D0048;
+    --primaryHoverColor: #27234d;
+    --secondaryColor: #F9B000;
+    --baseColor: #21243D;
+    --baseFont: 'Heebo', sans-serif;
+    --titleFont: 'Courier Prime', monospace;
+    --regular: 400;
+    --medium: 500;
+    --bold: 700;
+    --black: 900;
+    --lightBg: #F1F1F1;
+    --darkBg: #131523;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: var(--baseFont); !important;
+    background: var(--darkBg);
+}
+body {
+    font-family: var(--baseFont);
+    color: var(--baseColor);
+    line-height: normal;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+img {
+    max-width: 100%;
+}
+a {
+    color: inherit;
+}
+a:hover {
+    color: var(--primaryDarkColor);
+}
+a, .btn {
+    -webkit-transition: all 300ms ease-in-out 0s;
+    -o-transition: all 300ms ease-in-out 0s;
+    transition: all 300ms ease-in-out 0s;
+    text-decoration: none;
+}
+
+.centered-text {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/*sidebar*/
+
+.container {
+    display: flex;
+}
+
+
+.sidebar {
+    width: 200px;
+    height: 96vh;
+    background-color: var(--baseColor);
+    color: #fff;
+    box-sizing: border-box;
+    position: fixed;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left: 200px;
+    text-align: justify;
+}
+
+.sidebar a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.sidebar a:hover {
+    background-color: var(--primaryHoverColor);
+}
+
+.flex-container {
+    display: flex;
+}
+
+
+/* footer */
+
+
+.footerCol {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.socialCol li {
+    display: inline-block;
+}
+
+.socialCol li + li {
+    padding-left: 35px;
+}
+
+.socialCol img {
+    max-width: 30px;
+    max-height: 30px;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
+.copyrightCol {
+    padding: 20px 0 0;
+    font-size: 14px;
+}
+
+.copyrightCol p {
+    margin: 0;
+}
+
