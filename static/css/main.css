@@ -7,6 +7,8 @@
     --secondaryColor: #F9B000;
     --baseColor: #21243D;
     --baseFont: 'Heebo', sans-serif;
+    --baseFontColor: #393956;
+    --primaryBorderColor: #252841;
     --titleFont: 'Courier Prime', monospace;
     --regular: 400;
     --medium: 500;
@@ -14,6 +16,7 @@
     --black: 900;
     --lightBg: #F1F1F1;
     --darkBg: #131523;
+    --baseRadius: 10px;
 }
 
 html {
@@ -23,7 +26,7 @@ html {
 }
 body {
     font-family: var(--baseFont);
-    color: var(--baseColor);
+    color: var(--baseFontColor);
     line-height: normal;
 }
 ul {
@@ -47,11 +50,73 @@ a, .btn {
     text-decoration: none;
 }
 
+input[type="file"]::file-selector-button,input[type="submit"][name="submit"][value="Upload"] {
+    width: 100px;
+    color: rgba(255, 255, 255, 0.44);
+    border: 2px solid var(--primaryBorderColor);
+    padding: 0.2em 0.4em;
+    border-radius: 0.2em;
+    background-color: var(--baseColor);
+    transition: 1s;
+}
+
+input[type="submit"][name="submit"][value="Upload"]:hover {
+    background-color: #525a92;
+    border: 2px solid #5f658e;
+}
+input[type="file"]::-ms-browse:hover {
+    background-color: #525a92;
+    border: 2px solid #5f658e;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #525a92;
+    border: 2px solid #5f658e;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #525a92;
+    border: 2px solid #5f658e;
+}
+
+
 .centered-text {
     text-align: center;
     margin-top: 50px;
 }
 
+/*text-box*/
+
+.scroll-box {
+    width: 60vw; /* Adjust width as needed */
+    height: 80vh; /* Adjust height as needed */
+    margin: 0 auto;
+    overflow: auto; /* Enable scrolling */
+    border: 1px solid var(--baseColor); /* Optional: Add border for visual clarity */
+    border-radius: var(--baseRadius);
+    padding: 10px; /* Optional: Add padding for content */
+    background-color: var(--baseColor);
+}
+
+/* Customize scrollbar */
+.scroll-box::-webkit-scrollbar {
+    background: var(--baseColor);
+    width: 12px; /* Width of the scrollbar */
+}
+
+.scroll-box::-webkit-scrollbar-track {
+    background: var(--baseColor);
+    var(--baseRadius);/* Color of the track */
+}
+
+.scroll-box::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the thumb */
+    border-radius: var(--baseRadius); /* Rounded corners */
+}
+
+.scroll-box::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the thumb on hover */
+}
 /*sidebar*/
 
 .container {
@@ -65,6 +130,7 @@ a, .btn {
     background-color: var(--baseColor);
     color: #fff;
     box-sizing: border-box;
+    border-radius: var(--baseRadius);
     position: fixed;
 }
 
@@ -85,6 +151,7 @@ a, .btn {
 
 .sidebar a:hover {
     background-color: var(--primaryHoverColor);
+    border-radius: var(--baseRadius);
 }
 
 .flex-container {

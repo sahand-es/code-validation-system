@@ -8,17 +8,19 @@
             <a>test2</a>
         </div>
     </div>
+        <div class="scroll-box">
+            {% if code_html %}
+                <body>{{ code_html | safe }}</body>
+            {% else %}
+                <h1 class="centered-text">No code available</h1>
+            {% endif %}
+        </div>
     <div class="centered-text">
-        <h1>This text is centered.</h1>
-        <h1>This text is centered.</h1>
-        <h1>This text is centered.</h1>
-        <h1>This text is centered.</h1>
-        <h1>This text is centered.</h1>
-        <h1>This text is centered.</h1>
-        <h1>This text is centered.</h1>
-        <form method="post" enctype="multipart/form-data">
-            <input type="file" name="myfile" />
-            <input type="submit" name="submit" value="Upload" />
+        <form method="post" enctype="multipart/form-data"> 
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="file" name="code_file"/>
+            <input type="submit" name="submit" value="Upload"/>
         </form>
     </div>
 {% endblock %}

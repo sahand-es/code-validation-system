@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path("", views.load_page)
+    path("", views.code_page)
     #     todo: something like google meet codes
 ]
