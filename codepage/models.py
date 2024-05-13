@@ -13,3 +13,9 @@ def validate_code_file_extension(value):
 class Code(models.Model):
     code_file = models.FileField(upload_to='', validators=[validate_code_file_extension])
 
+
+class TestCase(models.Model):
+    input = models.TextField()
+    output = models.TextField()
+
+

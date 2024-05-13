@@ -4,10 +4,56 @@
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
-            <a>test1</a>
-            <a>test2</a>
+
+                {% for test_case in test_cases %}
+                    <div class="test-case-row">
+                    <a id="test-case-{{ test_case.id }}" onclick="openModal('modal-{{ test_case.id }}')">Test
+                        Case {{ forloop.counter }} </a>
+                    <!-- Delete button -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn trash-button"><i class="fas fa-trash"></i></button>
+                        <input type="hidden" name="form_type" value="test-case-delete"/>
+                        <input type="hidden" name="test_case_id" value="{{ test_case.id }}">
+                    </form>
+                    </div>
+                {% endfor %}
+            <button class="save-btn" id="insertTestCaseBtn">Insert test</button>
         </div>
     </div>
+
+    <!-- Modal for each test case -->
+    {% for test_case in test_cases %}
+        <div id="modal-{{ test_case.id }}" class="modal">
+            <div class="modal-test-case">
+                <span class="close" onclick="closeModal('modal-{{ test_case.id }}')">&times;</span>
+                <div class="input-container">
+                    <textarea name="input" id="Input" placeholder="Input" readonly>{{ test_case.input }}</textarea>
+                    <textarea name="output" id="Output" placeholder="Output" readonly>{{ test_case.output }}</textarea>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
+    <div id="insertTestCase" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form class="input-container" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <textarea name="input" id="Input" placeholder="Input"></textarea>
+                <textarea name="output" id="Output" placeholder="Output"></textarea>
+                <input type="hidden" name="form_type" value="test-case-upload"/>
+                <div class="save-container">
+                    <input type="submit" class="save-btn" placeholder="Save"></input>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="scroll-box-container">
         <div class="scroll-box">
             {% if code_html %}
                 <body>{{ code_html | safe }}</body>
@@ -15,12 +61,18 @@
                 <h1 class="centered-text">No code available</h1>
             {% endif %}
         </div>
+    </div>
+
+
     <div class="centered-text">
-        <form method="post" enctype="multipart/form-data"> 
+        <form method="post" enctype="multipart/form-data" name="form_type" value="form1">
             {% csrf_token %}
             {{ form.as_p }}
+            <input type="hidden" name="form_type" value="code-upload"/>
             <input type="file" name="code_file"/>
             <input type="submit" name="submit" value="Upload"/>
         </form>
     </div>
+
+
 {% endblock %}

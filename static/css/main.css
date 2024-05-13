@@ -17,6 +17,7 @@
     --lightBg: #F1F1F1;
     --darkBg: #131523;
     --baseRadius: 10px;
+    --secondaryRadius: 6px;
 }
 
 html {
@@ -24,25 +25,31 @@ html {
     font-family: var(--baseFont); !important;
     background: var(--darkBg);
 }
+
 body {
     font-family: var(--baseFont);
     color: var(--baseFontColor);
     line-height: normal;
 }
+
 ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
+
 img {
     max-width: 100%;
 }
+
 a {
     color: inherit;
 }
+
 a:hover {
     color: var(--primaryDarkColor);
 }
+
 a, .btn {
     -webkit-transition: all 300ms ease-in-out 0s;
     -o-transition: all 300ms ease-in-out 0s;
@@ -50,7 +57,7 @@ a, .btn {
     text-decoration: none;
 }
 
-input[type="file"]::file-selector-button,input[type="submit"][name="submit"][value="Upload"] {
+input[type="file"]::file-selector-button, input[type="submit"][name="submit"][value="Upload"] {
     width: 100px;
     color: rgba(255, 255, 255, 0.44);
     border: 2px solid var(--primaryBorderColor);
@@ -64,6 +71,7 @@ input[type="submit"][name="submit"][value="Upload"]:hover {
     background-color: #525a92;
     border: 2px solid #5f658e;
 }
+
 input[type="file"]::-ms-browse:hover {
     background-color: #525a92;
     border: 2px solid #5f658e;
@@ -85,12 +93,17 @@ input[type="file"]::file-selector-button:hover {
     margin-top: 50px;
 }
 
-/*text-box*/
+/*scroll-box*/
+.scroll-box-container {
+    display: flex;
+    justify-content: center;
+}
 
 .scroll-box {
+    right: 100px;
     width: 60vw; /* Adjust width as needed */
     height: 80vh; /* Adjust height as needed */
-    margin: 0 auto;
+    /*margin: 0 auto;*/
     overflow: auto; /* Enable scrolling */
     border: 1px solid var(--baseColor); /* Optional: Add border for visual clarity */
     border-radius: var(--baseRadius);
@@ -106,7 +119,7 @@ input[type="file"]::file-selector-button:hover {
 
 .scroll-box::-webkit-scrollbar-track {
     background: var(--baseColor);
-    var(--baseRadius);/* Color of the track */
+var(--baseRadius); /* Color of the track */
 }
 
 .scroll-box::-webkit-scrollbar-thumb {
@@ -117,21 +130,28 @@ input[type="file"]::file-selector-button:hover {
 .scroll-box::-webkit-scrollbar-thumb:hover {
     background: #555; /* Color of the thumb on hover */
 }
+
 /*sidebar*/
 
 .container {
     display: flex;
 }
 
+.container > .sidebar > button {
+    margin-top: auto; /* Pushes the button to the bottom */
+}
+
 
 .sidebar {
-    width: 200px;
+    width: 17%;
     height: 96vh;
     background-color: var(--baseColor);
     color: #fff;
     box-sizing: border-box;
     border-radius: var(--baseRadius);
     position: fixed;
+    display: flex;
+    flex-direction: column; /* Ensures elements stack vertically */
 }
 
 .content {
@@ -152,6 +172,123 @@ input[type="file"]::file-selector-button:hover {
 .sidebar a:hover {
     background-color: var(--primaryHoverColor);
     border-radius: var(--baseRadius);
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    /*overflow: auto;/ !* Enable scroll if needed *!*/
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: var(--baseColor   );
+    border-radius: var(--secondaryRadius);
+    margin: 10% auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 60%; /* Could be more or less, depending on screen size */
+    height: 50%;
+}
+
+.modal-test-case {
+    background-color: var(--baseColor   );
+    border-radius: var(--secondaryRadius);
+    margin: 10% auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 50%; /* Could be more or less, depending on screen size */
+    height: 40%;
+}
+
+.test-case-container {
+    display: flex;
+    height: 100%; /* Subtracting the top and bottom margins */
+    margin: 20px 0;
+    position: relative; /* Add relative positioning */
+}
+
+.test-case-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.test-case-row a {
+    margin-right: 10px;
+}
+
+.trash-button {
+    background: none;
+    border: none;
+    color: #fff;
+}
+
+
+.input-container {
+    display: flex;
+    height: 100%; /* Subtracting the top and bottom margins */
+    margin: 20px 0;
+    position: relative; /* Add relative positioning */
+}
+
+.input-container textarea {
+    border-color: #525a92;
+    border-radius: var(--secondaryRadius);
+    background-color: #696c90;
+    flex: 1; /* Distributes the available space equally */
+    padding: 10px;
+    margin-right: 10px; /* Add some space between the input boxes */
+    box-sizing: border-box;
+    height: 90%;
+    overflow: auto;
+    text-align: left;
+    transition: ease-in-out, width .35s ease-in-out;
+    resize: none;
+}
+
+.input-container textarea::placeholder {
+    text-align: left; /* Aligns the placeholder text to the left */
+    color: var(--baseFontColor)
+}
+
+.input-container textarea:focus {
+}
+
+.save-container {
+    text-align: center; /* Align the button in the center */
+}
+
+.save-btn {
+    color: rgba(255, 255, 255, 0.83);
+    border: 2px solid var(--primaryBorderColor);
+    padding: 0.2em 0.4em;
+    border-radius: 0.2em;
+    background-color: #34364f;
+    transition: 1s;
+}
+
+.save-btn:hover {
+    background-color: #525a92;
+    border: 2px solid #5f658e;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .flex-container {
